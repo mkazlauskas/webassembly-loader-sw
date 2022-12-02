@@ -12,6 +12,9 @@ export type WebAssemblyLoaderExportType =
 
 export interface WebAssemblyLoaderOptions {
   export?: WebAssemblyLoaderExportType;
+  importObjectProps?: string;
+  tableDescriptor?: WebAssembly.TableDescriptor;
+  memoryDescriptor?: WebAssembly.MemoryDescriptor;
 }
 
 // bear in mind this is ran from dist
@@ -24,3 +27,11 @@ const program = getProgramFromFiles(
 export const schema = generateSchema(program, 'WebAssemblyLoaderOptions', {
   noExtraProps: true
 });
+
+export type ModuleType = 'cjs' | 'esm';
+
+export interface TransformModuleOptions
+  extends Required<WebAssemblyLoaderOptions> {
+  errorHandler?: (message: string) => void | never;
+  module?: ModuleType;
+}

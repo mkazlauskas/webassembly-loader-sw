@@ -17,7 +17,13 @@ module.exports = function(this: loader.LoaderContext, source: Buffer) {
   return wasm2js(source, {
     export: options.export!,
     module: 'cjs',
-    errorHandler: errMsg => this.emitError(errMsg)
+    errorHandler: errMsg => this.emitError(errMsg),
+    memoryDescriptor: options.memoryDescriptor || { initial: 64 },
+    tableDescriptor: options.tableDescriptor || {
+      initial: 0,
+      element: 'anyfunc'
+    },
+    importObjectProps: options.importObjectProps || ''
   });
 };
 

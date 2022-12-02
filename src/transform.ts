@@ -1,15 +1,9 @@
 import {
+  TransformModuleOptions,
   WebAssemblyLoaderExportType,
   WebAssemblyLoaderOptions
 } from './options';
 import wrap from './wrapper';
-
-export type ModuleType = 'cjs' | 'esm';
-
-interface TransformModuleOptions extends Required<WebAssemblyLoaderOptions> {
-  errorHandler?: (message: string) => void | never;
-  module?: ModuleType;
-}
 
 //#region helpers
 const is = (type: WebAssemblyLoaderExportType) => ({
@@ -36,17 +30,17 @@ export default function(
 
   switch (options.export) {
     case 'buffer':
-      return wrap(source, options.module).asBuffer;
+      return wrap(source, options).asBuffer;
     case 'instance':
-      return wrap(source, options.module).asWebAssembly.Instance;
+      return wrap(source, options).asWebAssembly.Instance;
     case 'module':
-      return wrap(source, options.module).asWebAssembly.Module;
+      return wrap(source, options).asWebAssembly.Module;
     case 'async':
-      return wrap(source, options.module).promiseWebAssembly.Both;
+      return wrap(source, options).promiseWebAssembly.Both;
     case 'async-instance':
-      return wrap(source, options.module).promiseWebAssembly.Instance;
+      return wrap(source, options).promiseWebAssembly.Instance;
     case 'async-module':
-      return wrap(source, options.module).promiseWebAssembly.Module;
+      return wrap(source, options).promiseWebAssembly.Module;
     default:
       throw new Error(`exporting as "${options.export}" not available`);
   }
