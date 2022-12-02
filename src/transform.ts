@@ -34,17 +34,6 @@ export default function(
   if (WebAssembly.validate(source) === false)
     panic('Invalid WebAssembly file', options.errorHandler);
 
-  if (
-    is(options.export).oneOf(['instance', 'module']) &&
-    source.byteLength > 4000
-  )
-    panic(
-      `The buffer size is larger than 4KB. Consider using async-${
-        options.export
-      }`,
-      options.errorHandler
-    );
-
   switch (options.export) {
     case 'buffer':
       return wrap(source, options.module).asBuffer;
