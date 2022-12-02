@@ -15,6 +15,12 @@
 <!-- [![node][node]][node-url] -->
 <!-- [![cover][cover]][cover-url] -->
 
+# webassembly-loader-sw
+
+Fork of [webassembly-loader](https://github.com/DrSensor/webassembly-loader) with the following changes:
+- Remove 4000 limit for inline wasm. There's no such limitation in service worker environment.
+- Update `new WebAssembly.Instance` by providing importObject arg. Add extra options to customize it.
+
 # webassembly-loader
 
 > this loader can also be used as a library <sup>↙ see [who use this?](#who-use-this)</sup>

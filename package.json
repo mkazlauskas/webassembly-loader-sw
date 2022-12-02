@@ -36,12 +36,12 @@
 			"precommit": "git add CHANGELOG.md package*.json"
 		}
 	},
-	"repository": "github:DrSensor/git-notes.git",
+	"repository": "https://github.com/mkazlauskas/webassembly-loader-sw.git",
 	"keywords": ["webpack-loader", "webassembly", "wasm", "webpack"],
 	"author": "Fahmi Akbar Wildana",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/DrSensor/webassembly-loader/issues"
+		"url": "https://github.com/mkazlauskas/webassembly-loader-sw/issues"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0",
